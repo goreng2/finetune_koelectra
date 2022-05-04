@@ -6,6 +6,9 @@ huggingface transformer 라이브러리를 활용한 KoELECTRA 모델링
 - transformers == 4.14.1
 - pytorch == 1.10.1
 - cudatoolkit == 11.3.1
+```commandline
+$ conda env create -f environments.txt <ENV_NAME>
+```
 
 ## Usage
 
