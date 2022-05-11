@@ -11,9 +11,9 @@ class Item(BaseModel):
 
 app = FastAPI()
 
-model = torch.jit.load("rsc/traced_electra.pt")
+model = torch.jit.load("rsc/optimized_traced_electra.pth")
 model.eval()
-tokenizer = AutoTokenizer.from_pretrained("../app_embedded/rsc")
+tokenizer = AutoTokenizer.from_pretrained("rsc")
 softmax = torch.nn.Softmax(dim=1)
 
 
