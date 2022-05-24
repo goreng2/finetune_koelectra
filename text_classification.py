@@ -28,16 +28,8 @@ def main(data, num_labels, batch_size):
     tokenized_nsmc = tokenized_nsmc.remove_columns(["id", "document"])  # Unuse column
     tokenized_nsmc = tokenized_nsmc.rename_column("label", "labels")  # model expects 'labels'
     tokenized_nsmc.set_format("torch")
-    # small_train_dataset = tokenized_nsmc["train"].shuffle(seed=42).select(range(1000))
-    # small_eval_dataset = tokenized_nsmc["test"].shuffle(seed=42).select(range(1000))
-    """
-    print(tokenized_nsmc["train"][slice(None, 1, None)])
-    {'id': ['9976970'], 'document': ['아 더빙.. 진짜 짜증나네요 목소리'], 'label': [0],
-     'input_ids': [[2, 3079, 33345, 18, 18, 7082, 13215, 4065, 4116, 4150, 6933, 3]],
-     'token_type_ids': [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], 'attention_mask': [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]}
-    """
 
-    # Set Model
+    # Model
     model = AutoModelForSequenceClassification.from_pretrained("monologg/koelectra-base-v3-discriminator", num_labels=num_labels)
     model.to(device)
 
