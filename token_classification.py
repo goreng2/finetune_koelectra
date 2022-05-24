@@ -58,9 +58,14 @@ def compute_metrics(eval_preds):
 def main(data, batch_size):
     # Data
     global label_list
-    dataset = load_dataset(data)
+    dataset = load_dataset(data, "ner")
+    # print(dataset)
+    # print(dataset["train"][0])
     label_list = dataset["train"].features["ner_tags"].feature.names
+    # print("[label_list]", label_list)
     tokenized_dataset = dataset.map(preprocess_fn, batched=True)
+    # print("[tokenized_dataset]", tokenized_dataset)
+    # print(tokenized_dataset["train"][0])
 
     # Model
     id2label = {str(i): label for i, label in enumerate(label_list)}
@@ -72,11 +77,11 @@ def main(data, batch_size):
 
     # Train
     training_args = TrainingArguments(
-        output_dir="./result",
+        output_dir="./klue_ner",
         evaluation_strategy="epoch",
         save_strategy="epoch",
         learning_rate=2e-5,
-        num_train_epochs=3,
+        num_train_epochs=20,
         weight_decay=0.01,
         per_device_train_batch_size=batch_size,
         per_device_eval_batch_size=batch_size,
@@ -97,8 +102,8 @@ def main(data, batch_size):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="KoELECTRA Token-classification")
-    parser.add_argument("--data", type=str, default="wnut_17", help="Data path")
-    parser.add_argument("--batch-size", type=int, default=16, help="train/eval batch size")
+    parser.add_argument("--data", type=str, default="klue", help="Data path")
+    parser.add_argument("--batch-size", type=int, default=32, help="train/eval batch size")
     args = parser.parse_args()
 
     main(args.data, args.batch_size)
