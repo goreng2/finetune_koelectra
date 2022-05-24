@@ -1,13 +1,15 @@
 # ELECTRA 모델링
-huggingface transformer 라이브러리를 활용한 KoELECTRA 모델링
+huggingface 라이브러리를 활용한 [KoELECTRA](https://huggingface.co/monologg/koelectra-base-v3-discriminator) 모델링
 
 ## Requirements
 - python==3.9.12
 - transformers==4.14.1
 - pytorch==1.10.1
 - cudatoolkit==11.3.1
+
+### `conda`를 활용한 환경 구성
 ```commandline
-$ conda env create -f environments.txt <ENV_NAME>
+$ conda create --name <env> --file <this file>
 ```
 
 ## Usage
@@ -15,7 +17,7 @@ $ conda env create -f environments.txt <ENV_NAME>
 ```commandline
 $ python text_classification.py
 ```
-#### Output
+#### Output 구성
 ```
 .
 └── checkpoint-500
@@ -46,9 +48,11 @@ $ python optimize.py
 
 
 ## Reference
-- https://huggingface.co/docs/transformers/training
-- https://huggingface.co/docs/transformers/tasks/sequence_classification
-- https://huggingface.co/docs/transformers/pipeline_tutorial#pipeline-usage
-- https://huggingface.co/docs/transformers/preprocessing#nlp
-- https://huggingface.co/docs/transformers/serialization#torchscript
-- https://pytorch.org/tutorials/recipes/script_optimized.html#optimize-a-torchscript-model
+- [Fine-tune](https://huggingface.co/docs/transformers/training)
+- [Text classification](https://huggingface.co/docs/transformers/tasks/sequence_classification)
+- [Pipelines for inference](https://huggingface.co/docs/transformers/pipeline_tutorial#pipeline-usage)
+- [Tokenizer](https://huggingface.co/docs/transformers/preprocessing#nlp)
+- [TorchScript](https://huggingface.co/docs/transformers/serialization#torchscript)
+- [Qunatization](https://pytorch.org/tutorials/recipes/script_optimized.html#optimize-a-torchscript-model)
+- [How to resume training](https://github.com/huggingface/transformers/issues/7198#issuecomment-694352941)
+- [Token classification metrics](https://huggingface.co/course/chapter7/2#metrics)
